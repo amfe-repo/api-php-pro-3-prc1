@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_76d0acf1-2fa2-4afe-874d-e0af6aeb6e39",
+      "org_id": "user_7876adc8-0799-4382-8551-fd0425912b29",
+      "deploy_url": "https://push-n2-par-clevercloud-customers.services.clever-cloud.com/app_76d0acf1-2fa2-4afe-874d-e0af6aeb6e39.git",
+      "name": "api-php-pro-3",
+      "alias": "api-php-pro-3"
+    }
+  ]
+}

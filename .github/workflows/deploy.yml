@@ -1,24 +1,22 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 590ae04d55a2030e5ad902978512701cb3d83c30
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Deploy
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+
+  main:
+    name: PHP ${{ matrix.php-versions }} Deploy docker
+
+    strategy:
+      matrix:
+        php-versions: ['7.3', '7.4', '8.0']
+
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -29,16 +27,42 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer, pecl, phpunit
+          extensions: intl, json, mbstring, gd, mysqlnd, xdebug, xml, sqlite3
+          coverage: xdebug
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+      
+      - name: Install dependencies (limited)
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name }}
+        run: composer update --no-progress --no-interaction --prefer-dist --optimize-autoloader
+      
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Install dependencies
+        run: |
+          git fetch --prune --unshallow
+          wget https://clever-tools.cellar.services.clever-cloud.com/releases/latest/clever-tools-latest_linux.tar.gz
+          tar xvzf clever-tools-latest_linux.tar.gz
+      
+      - name: Login Clever Cloud
+        run: ./clever-tools-latest_linux/clever login --token ${{secrets.CLEVER_TOKEN}} --secret ${{secrets.CLEVER_SECRET}}
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Beploy Dockerfile
         run: |
-          echo Add other actions to build,
-<<<<<<< HEAD
-          echo test, and deploy your project.
-=======
-          echo test, and deploy your project.
->>>>>>> 590ae04d55a2030e5ad902978512701cb3d83c30
+          ./clever-tools-latest_linux/clever deploy -a api-php-pro-3
