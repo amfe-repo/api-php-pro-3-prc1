@@ -1,4 +1,4 @@
-FROM bit/codeig
+FROM akme47/codeig-php:latest
 
 WORKDIR /app/myapp
 
