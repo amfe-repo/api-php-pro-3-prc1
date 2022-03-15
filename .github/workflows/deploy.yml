@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 590ae04d55a2030e5ad902978512701cb3d83c30
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -34,4 +37,8 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
+<<<<<<< HEAD
           echo test, and deploy your project.
+=======
+          echo test, and deploy your project.
+>>>>>>> 590ae04d55a2030e5ad902978512701cb3d83c30
