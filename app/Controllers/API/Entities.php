@@ -1,13 +1,14 @@
 <?php
 
-namespace App\API;
+namespace App\Controllers\API;
 
 use CodeIgniter\RESTful\ResourceController;
 
 class Entities extends ResourceController
 {
 
-    public function index(){
+    public function index()
+    {
         echo "Helou Uwu";
     }
 

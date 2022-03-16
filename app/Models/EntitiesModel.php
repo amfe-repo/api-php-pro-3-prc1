@@ -13,7 +13,8 @@ class Entities extends Model
     protected $returnType = 'array';
     protected $allowedFields = ['Name', 'Password', 'LastName', 'DateBirthday', 'Email', 'City', 'Profession', 'IdRole'];
 
-    protected $validationRules = [
+    protected $validationRules = 
+    [
         'Name' => 'required|alpha_space|min_lenght[3]|max_lenght[40]',
         'Password' => 'required|alpha_space|min_lenght[3]|max_lenght[60]',
         'LastName' => 'required|alpha_space|min_lenght[3]|max_lenght[40]',
@@ -24,12 +25,14 @@ class Entities extends Model
 
     ];
 
-    protected $validationMessage = [
-        'Email' => [
+    protected $validationMessage = 
+    [
+        'Email' => 
+        [
             'valid_email' => 'Debe ingresar un correo electrónico válido.'
         ]
     ];
 
     protected $skipValidation = false;
 }
-?>
+
