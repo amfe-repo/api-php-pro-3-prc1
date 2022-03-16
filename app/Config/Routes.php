@@ -33,6 +33,12 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+//nuestra url será: http://localhost:8080/api/entities --> GET
+$routes->group('api',['namespace' => 'App/Controllers/API'],function($routes){ 
+$routes->get('entities','Entities::index');
+
+
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
