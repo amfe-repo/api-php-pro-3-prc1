@@ -31,21 +31,14 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->get('/', 'Home::index');
 
 //nuestra url será: http://localhost:8080/api/entities --> GET
-<<<<<<< HEAD
 $routes->group('api', ['namespace' => 'App/Controllers/API'], function ($routes) {
     $routes->get('entities', 'Entities::index');
     $routes->post('entities/create', 'Entities::create');
     $routes->put('entities/update', 'Entities::put_method');
     $routes->delete('entities/delete', 'Entities::delete_method');
-=======
-$routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
-{ 
-    $routes->get('entities','Entities::index');
-    $routes->post('entities/create','Entities::create');
-
->>>>>>> 1e0131114d3da9cd5b67484dbb70bfb3c85d9d97
 });
 
 //nuestra url será: http://localhost:8080/api/jobsposted
