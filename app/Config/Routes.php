@@ -34,14 +34,22 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 //nuestra url será: http://localhost:8080/api/entities --> GET
-$routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
-{ 
-    $routes->get('entities','Entities::index');
-    $routes->post('entities/create','Entities::create');
-    $routes->put('entities/update','Entities::put_method');
-    $routes->delete('entities/delete','Entities::delete_method');
-
+$routes->group('api', ['namespace' => 'App/Controllers/API'], function ($routes) {
+    $routes->get('entities', 'Entities::index');
+    $routes->post('entities/create', 'Entities::create');
+    $routes->put('entities/update', 'Entities::put_method');
+    $routes->delete('entities/delete', 'Entities::delete_method');
 });
+
+//nuestra url será: http://localhost:8080/api/jobsposted
+$routes->group('api', ['namespace' => 'App/Controllers/API'], function ($routes) {
+    $routes->get('jobsposted', 'JobsPosted::index');
+    $routes->post('jobsposted', 'JobsPosted::create');
+    $routes->put('jobsposted/update', 'Entities::put_method');
+    $routes->delete('jobsposted/delete', 'Entities::delete_method');
+});
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
