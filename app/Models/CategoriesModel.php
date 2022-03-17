@@ -13,7 +13,7 @@ class CategoriesModel extends Model
     protected $allowedFields = ['Name'];
 
     protected $validationRules = [
-        'Name' => 'required|alpha_space|min_lenght[3]|max_lenght[40]'
+        'Name' => 'required|alpha_space|min_length[3]|max_length[40]'
     ];
 
     protected $validationMessage = [

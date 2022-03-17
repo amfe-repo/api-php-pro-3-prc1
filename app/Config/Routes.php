@@ -34,11 +34,24 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 //nuestra url será: http://localhost:8080/api/entities --> GET
+<<<<<<< HEAD
 $routes->group('api', ['namespace' => 'App/Controllers/API'], function ($routes) {
     $routes->get('entities', 'Entities::index');
     $routes->post('entities/create', 'Entities::create');
     $routes->put('entities/update', 'Entities::put_method');
     $routes->delete('entities/delete', 'Entities::delete_method');
+=======
+$routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
+{ 
+    // Entities routes
+    $routes->get('entities','Entities::index');
+    $routes->post('entities/create','Entities::create');
+
+    // Categories routes
+    $routes->get('categories','Categories::index');
+    $routes->post('categories/create','Categories::create');
+
+>>>>>>> 49bc3d782bb5daa16238367e03fa641735170475
 });
 
 //nuestra url será: http://localhost:8080/api/jobsposted
