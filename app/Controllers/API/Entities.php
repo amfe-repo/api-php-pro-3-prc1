@@ -41,18 +41,87 @@ class Entities extends ResourceController
         }
     }
 
-    public function put_method()
+    public function search($id = null)
     {
-        echo "Este es el metodo put";
+        try 
+        {
+            if($id == null)
+                return $this->failValidationError('ID not valid.');
+            
+            $entitie = $this->model->find($id);
+
+            if($entitie == null)
+                return $this->failNotFound('Id not found. ' . $id);
+            
+            return $this->respond($entitie);
+        } 
+        catch (\Throwable $th) 
+        {
+            return $this->failServerError('An error ocurried' . $th);
+        }
 
     }
 
-    public function delete_method()
+    public function update($id = null)
     {
-        echo "Este es el metodo delete";
+        try 
+        {
+            if($id == null)
+                return $this->failValidationError('ID not valid.');
+            
+
+            if($this->model->find($id) == null)
+                return $this->failNotFound('Id not found. ' . $id);
+            
+            $data = $this->request->getJSON();
+
+            if ($this->model->update($id, $data)) 
+            {
+                $data->id = $id;
+                return $this->respondUpdated($data);
+            }
+            else
+            {
+                return $this->failValidationError($this->model->validation->listErrors());
+            }
+
+        } 
+        catch (\Throwable $th) 
+        {
+            return $this->failServerError('An error ocurried' . $th);
+        }
 
     }
 
+    public function delete($id = null)
+    {
+        try 
+        {
+            if($id == null)
+                return $this->failValidationError('ID not valid.');
+            
 
+            $client = $this->model->find($id);
+
+            if($client == null)
+                return $this->failNotFound('Id not found. ' . $id);
+            
+
+            if ($this->model->delete($id)) 
+            {
+                return $this->respondDeleted($client);
+            }
+            else
+            {
+                return $this->failValidationError($this->model->validation->listErrors());
+            }
+
+        } 
+        catch (\Throwable $th) 
+        {
+            return $this->failServerError('An error ocurried' . $th);
+        }
+
+    }
 
 }
