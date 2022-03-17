@@ -36,7 +36,6 @@ $routes->setAutoRoute(true);
 $routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
 { 
     $routes->get('entities','Entities::index');
-
     $routes->post('entities/create','Entities::create');
 
 });
