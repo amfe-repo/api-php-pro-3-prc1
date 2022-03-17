@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ScheduleJob extends Model
+class ScheduleJobModel extends Model
 {
 
     protected $table = 'ScheduleJob';

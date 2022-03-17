@@ -37,6 +37,10 @@ $routes->get('/', 'Home::index');
 $routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
 { 
     $routes->get('entities','Entities::index');
+    $routes->post('entities/create','Entities::create');
+    $routes->put('entities/update','Entities::put_method');
+    $routes->delete('entities/delete','Entities::delete_method');
+
 });
 /*
  * --------------------------------------------------------------------

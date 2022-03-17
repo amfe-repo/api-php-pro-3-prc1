@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class JobsPosted extends Model
+class JobsPostedModel extends Model
 {
 
     protected $table = 'JobsPosted';

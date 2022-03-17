@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Entities extends Model
+class EntitiesModel extends Model
 {
 
     protected $table = 'Entities';
@@ -15,13 +15,14 @@ class Entities extends Model
 
     protected $validationRules = 
     [
-        'Name' => 'required|alpha_space|min_lenght[3]|max_lenght[40]',
-        'Password' => 'required|alpha_space|min_lenght[3]|max_lenght[60]',
-        'LastName' => 'required|alpha_space|min_lenght[3]|max_lenght[40]',
-        'DateBirthday' => 'required|alpha_space|',
-        'Email' => 'required|alpha_space|min_lenght[3]|max_lenght[60]',
-        'City' => 'required|alpha_space|min_lenght[3]|max_lenght[50]',
-        'Profession' => 'required|alpha_space|max_lenght[40]',
+        'Name' => 'required|alpha_space|min_length[3]|max_length[40]',
+        'Password' => 'required|alpha_space|min_length[3]|max_length[60]',
+        'LastName' => 'required|alpha_space|min_length[3]|max_length[40]',
+        'DateBirthday' => 'required',
+        'Email' => 'required|valid_email|min_length[3]|max_length[60]',
+        'City' => 'required|alpha_space|min_length[3]|max_length[50]',
+        'Profession' => 'required|alpha_space|max_length[40]',
+        'IdRole' => 'required|numeric|max_length[1]'
 
     ];
 
