@@ -2,36 +2,31 @@
 
 namespace App\Controllers\API;
 
-use App\Models\JobsPostedModel;
+use App\Models\ScheduleJobModel;
 use CodeIgniter\RESTful\ResourceController;
 
-//use App\Models\JobsPostedModels;
-
-
-class JobsPosted extends ResourceController
+class ScheduleJob extends ResourceController
 {
 
     public function __construct()
     {
-        $this->model = $this->setModel(new JobsPostedModel());
+        $this->model = $this->setModel(new ScheduleJobModel());
     }
 
     public function index()
     {
-        $jobsposted = $this->model->findAll();
-        return $this->respond($jobsposted);
+        $schedulejob = $this->model->findAll();
+        return $this->respond($schedulejob);
     }
-
 
     public function create()
     {
         try {
-            $jobsposted = $this->request->getJSON();
+            $schedulejob = $this->request->getJSON();
 
-            if ($this->model->insert($jobsposted)) {
-
-                $jobsposted->id = $this->model->insertID();
-                return $this->respondCreated($jobsposted);
+            if ($this->model->insert($schedulejob)) {
+                $schedulejob->id = $this->model->insertID();
+                return $this->respondCreated($schedulejob);
             } else {
                 return $this->failValidationError($this->model->validation->listErrors());
             }
@@ -46,15 +41,14 @@ class JobsPosted extends ResourceController
             if ($id == null)
                 return $this->failValidationError('ID not valid.');
 
-            $jobsposted = $this->model->find($id);
+            $schedulejob = $this->model->find($id);
 
-            if ($jobsposted == null)
-                return $this->failNotFound('Id no encontrado' . $id);
+            if ($schedulejob == null)
+                return $this->failNotFound('Id not found. ' . $id);
 
-            return $this->respond($jobsposted);
+            return $this->respond($schedulejob);
         } catch (\Throwable $th) {
-
-            return $this->failServerError('An error ocurried.');
+            return $this->failServerError('An error ocurried' . $th);
         }
     }
 

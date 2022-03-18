@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\API\ScheduleJobs;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -33,34 +35,31 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-//nuestra url será: http://localhost:8080/api/entities --> GET
-<<<<<<< HEAD
-$routes->group('api', ['namespace' => 'App/Controllers/API'], function ($routes) {
-    $routes->get('entities', 'Entities::index');
-    $routes->post('entities/create', 'Entities::create');
-    $routes->put('entities/update', 'Entities::put_method');
-    $routes->delete('entities/delete', 'Entities::delete_method');
-=======
+
 $routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
-{ 
-    // Entities routes
+{
+    // Entities routes http://localhost:8080/api/entities
     $routes->get('entities','Entities::index');
     $routes->post('entities/create','Entities::create');
 
-    // Categories routes
+    // Categories routes http://localhost:8080/api/categories
     $routes->get('categories','Categories::index');
     $routes->post('categories/create','Categories::create');
 
->>>>>>> 49bc3d782bb5daa16238367e03fa641735170475
+    //JobsPosted routes http://localhost:8080/api/jobsposted
+    $routes->get('jobsposted','JobsPosted::index');
+    $routes->post('jobsposted','Jobsposted::create');
+
+    //ScheduleJob  routes http://localhost:8080/api/schedulejob
+    $routes->get('schedulejob','ScheduleJob::index');
+    $routes->post('schedulejob','ScheduleJob::create');
+
+    //Bussiness routes http://localhost:8080/api/bussiness
+    $routes->get('bussiness','Bussiness::index');
+    $routes->post('bussiness','Bussiness::create');
+
 });
 
-//nuestra url será: http://localhost:8080/api/jobsposted
-$routes->group('api', ['namespace' => 'App/Controllers/API'], function ($routes) {
-    $routes->get('jobsposted', 'JobsPosted::index');
-    $routes->post('jobsposted', 'JobsPosted::create');
-    $routes->put('jobsposted/update', 'Entities::put_method');
-    $routes->delete('jobsposted/delete', 'Entities::delete_method');
-});
 
 
 /*
