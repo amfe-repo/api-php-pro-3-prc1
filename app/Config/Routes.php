@@ -41,7 +41,7 @@ $routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
     // Entities routes http://localhost:8080/api/entities
     $routes->get('entities','Entities::index');
     $routes->post('entities/create','Entities::create');
-    $routes->get('entities/search/(:num)', 'Entities::search/$1');
+    //$routes->get('entities/search/', 'Entities::search');
 
     // Categories routes http://localhost:8080/api/categories
     $routes->get('categories','Categories::index');
@@ -58,7 +58,6 @@ $routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
     //Bussiness routes http://localhost:8080/api/bussiness
     $routes->get('bussiness','Bussiness::index');
     $routes->post('bussiness','Bussiness::create');
-
 });
 
 
