@@ -36,14 +36,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->get('api/entities/search/(:num)', 'App\Controllers\API\Entities::search/$1');
 
 $routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
 {
     // Entities routes http://localhost:8080/api/entities
     $routes->get('/entities','Entities::index');
     $routes->post('/entities/create','Entities::create');
-    $routes->get('/entities/search', 'Entities::search');
-    $routes->get('/entities/search/(:num)', 'Entities::search/$1');
+    
 
     // Categories routes http://localhost:8080/api/categories
     $routes->get('categories','Categories::index');
