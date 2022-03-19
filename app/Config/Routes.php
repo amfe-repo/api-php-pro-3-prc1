@@ -48,15 +48,15 @@ $routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
 
     //JobsPosted routes http://localhost:8080/api/jobsposted
     $routes->get('jobsposted','JobsPosted::index');
-    $routes->post('jobsposted','Jobsposted::create');
+    $routes->post('jobsposted/create','Jobsposted::create');
 
     //ScheduleJob  routes http://localhost:8080/api/schedulejob
     $routes->get('schedulejob','ScheduleJob::index');
-    $routes->post('schedulejob','ScheduleJob::create');
+    $routes->post('schedulejob/create','ScheduleJob::create');
 
     //Bussiness routes http://localhost:8080/api/bussiness
     $routes->get('bussiness','Bussiness::index');
-    $routes->post('bussiness','Bussiness::create');
+    $routes->post('bussiness/create','Bussiness::create');
 
 });
 
