@@ -39,7 +39,7 @@ $routes->get('/', 'Home::index');
 // Entities routes http://localhost:8080/api/entities
 $routes->get('api/entities','API\Entities::index');
 $routes->post('api/entities/create','API\Entities::create');
-$routes->get('api/entities/search/(:num)', 'API\Entities::search/$1');
+$routes->get('/api/entities/search/(:num)', 'API\Entities::search/$1');
 
 // Categories routes http://localhost:8080/api/categories
 $routes->get('api/categories','API\Categories::index');
