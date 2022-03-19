@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Controllers\API\ScheduleJobs;
+use App\Controllers\API\Entities;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -35,31 +36,30 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Entities routes http://localhost:8080/api/entities
+$routes->get('api/entities','API\Entities::index');
+$routes->post('api/entities/create','API\Entities::create');
+$routes->get('/api/entities/search/(:num)', 'API\Entities::search/$1');
 
-$routes->group('api',['namespace' => 'App/Controllers/API'],function($routes)
-{
-    // Entities routes http://localhost:8080/api/entities
-    $routes->get('entities','Entities::index');
-    $routes->post('entities/create','Entities::create');
+// Categories routes http://localhost:8080/api/categories
+$routes->get('api/categories','API\Categories::index');
+$routes->post('api/categories/create','API\Categories::create');
+$routes->get('api/categories/search/(:num)', 'API\Categories::search/$1');
 
-    // Categories routes http://localhost:8080/api/categories
-    $routes->get('categories','Categories::index');
-    $routes->post('categories/create','Categories::create');
+//JobsPosted routes http://localhost:8080/api/jobsposted
+$routes->get('api/jobsposted','API\JobsPosted::index');
+$routes->post('api/jobsposted','API\Jobsposted::create');
+$routes->get('api/jobsposted/search/(:num)', 'API\Jobsposted::search/$1');
 
-    //JobsPosted routes http://localhost:8080/api/jobsposted
-    $routes->get('jobsposted','JobsPosted::index');
-    $routes->post('jobsposted/create','Jobsposted::create');
+//ScheduleJob  routes http://localhost:8080/api/schedulejob
+$routes->get('api/schedulejob','API\ScheduleJob::index');
+$routes->post('api/schedulejob','API\ScheduleJob::create');
+$routes->get('api/schedulejob/search/(:num)', 'API\ScheduleJob::search/$1');
 
-    //ScheduleJob  routes http://localhost:8080/api/schedulejob
-    $routes->get('schedulejob','ScheduleJob::index');
-    $routes->post('schedulejob/create','ScheduleJob::create');
-
-    //Bussiness routes http://localhost:8080/api/bussiness
-    $routes->get('bussiness','Bussiness::index');
-    $routes->post('bussiness/create','Bussiness::create');
-
-});
-
+//Bussiness routes http://localhost:8080/api/bussiness
+$routes->get('api/bussiness','API\Bussiness::index');
+$routes->post('api/bussiness','API\Bussiness::create');
+$routes->get('api/bussiness/search/(:num)', 'API\Bussiness::search/$1');
 
 
 /*
