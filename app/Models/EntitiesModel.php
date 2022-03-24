@@ -22,7 +22,7 @@ class EntitiesModel extends Model
         'Email' => 'required|valid_email|min_length[3]|max_length[60]',
         'City' => 'required|alpha_space|min_length[3]|max_length[50]',
         'Profession' => 'required|alpha_space|max_length[40]',
-        'IdRole' => 'required|numeric|max_length[1]'
+        'IdRole' => 'required|integer|max_length[1]',
 
     ];
 

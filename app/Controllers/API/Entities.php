@@ -3,6 +3,8 @@
 namespace App\Controllers\API;
 
 use App\Models\EntitiesModel;
+use App\Models\RolesEntitiesModel;
+use App\Models\RolesModel;
 use CodeIgniter\RESTful\ResourceController;
 
 class Entities extends ResourceController
@@ -21,107 +23,80 @@ class Entities extends ResourceController
 
     public function create()
     {
-        try 
-        {
+        try {
             $entitie = $this->request->getJSON();
-
-            if ($this->model->insert($entitie)) 
-            {
+            
+            if ($this->model->insert($entitie)) {
                 $entitie->id = $this->model->insertID();
                 return $this->respondCreated($entitie);
-            }
-            else
-            {
+            } else {
                 return $this->failValidationError($this->model->validation->listErrors());
             }
-
-        } catch (\Exception $th) 
-        {
+        } catch (\Exception $th) {
             return $this->failServerError('An error ocurried' . $th);
         }
     }
 
     public function search($id = null)
     {
-        try 
-        {
-            if($id == null)
+        try {
+            if ($id == null)
                 return $this->failValidationError('ID not valid.');
-            
+
             $entitie = $this->model->find($id);
 
-            if($entitie == null)
+            if ($entitie == null)
                 return $this->failNotFound('Id not found. ' . $id);
-            
+
             return $this->respond($entitie);
-        } 
-        catch (\Throwable $th) 
-        {
+        } catch (\Throwable $th) {
             return $this->failServerError('An error ocurried' . $th);
         }
-
     }
 
     public function update($id = null)
     {
-        try 
-        {
-            if($id == null)
+        try {
+            if ($id == null)
                 return $this->failValidationError('ID not valid.');
-            
 
-            if($this->model->find($id) == null)
+
+            if ($this->model->find($id) == null)
                 return $this->failNotFound('Id not found. ' . $id);
-            
+
             $data = $this->request->getJSON();
 
-            if ($this->model->update($id, $data)) 
-            {
+            if ($this->model->update($id, $data)) {
                 $data->id = $id;
                 return $this->respondUpdated($data);
-            }
-            else
-            {
+            } else {
                 return $this->failValidationError($this->model->validation->listErrors());
             }
-
-        } 
-        catch (\Throwable $th) 
-        {
+        } catch (\Throwable $th) {
             return $this->failServerError('An error ocurried' . $th);
         }
-
     }
 
     public function delete($id = null)
     {
-        try 
-        {
-            if($id == null)
+        try {
+            if ($id == null)
                 return $this->failValidationError('ID not valid.');
-            
+
 
             $client = $this->model->find($id);
 
-            if($client == null)
+            if ($client == null)
                 return $this->failNotFound('Id not found. ' . $id);
-            
 
-            if ($this->model->delete($id)) 
-            {
+
+            if ($this->model->delete($id)) {
                 return $this->respondDeleted($client);
-            }
-            else
-            {
+            } else {
                 return $this->failValidationError($this->model->validation->listErrors());
             }
-
-        } 
-        catch (\Throwable $th) 
-        {
+        } catch (\Throwable $th) {
             return $this->failServerError('An error ocurried' . $th);
         }
-
     }
-
 }

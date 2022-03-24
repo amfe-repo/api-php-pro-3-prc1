@@ -54,16 +54,22 @@ $routes->delete('/api/categories/delete/(:num)','API\Categories::delete/$1');
 $routes->get('api/jobsposted','API\JobsPosted::index');
 $routes->post('api/jobsposted','API\Jobsposted::create');
 $routes->get('/api/jobsposted/search/(:num)', 'API\Jobsposted::search/$1');
+$routes->put('/api/jobsposted/update/(:num)','API\Jobspoted::update/$1');
+$routes->delete('/api/jobsposted/delete/(:num)','API\JobsPosted::delete/$1');
 
 //ScheduleJob  routes http://localhost:8080/api/schedulejob
 $routes->get('api/schedulejob','API\ScheduleJob::index');
 $routes->post('api/schedulejob','API\ScheduleJob::create');
 $routes->get('/api/schedulejob/search/(:num)', 'API\ScheduleJob::search/$1');
+$routes->put('/api/schedulejob/update/(:num)','API\ScheduleJob::update/$1');
+$routes->delete('/api/schedulejob/delete/(:num)','API\ScheduleJob::delete/$1');
 
 //Bussiness routes http://localhost:8080/api/bussiness
 $routes->get('api/bussiness','API\Bussiness::index');
 $routes->post('api/bussiness','API\Bussiness::create');
 $routes->get('/api/bussiness/search/(:num)', 'API\Bussiness::search/$1');
+$routes->put('/api/bussiness/update/(:num)','API\Bussiness::update/$1');
+$routes->delete('/api/bussiness/delete/(:num)','API\Bussiness::delete/$1');
 
 
 /*
