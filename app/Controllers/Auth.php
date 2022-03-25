@@ -24,7 +24,7 @@ class Auth extends BaseController
             if($validate == null)
                 return $this->failNotFound('User not valid.');
 
-            return $this->respond(["Token"=> $this->generateJWT($model->entitieWithRole($validate['IdEntitie']))]);
+            return $this->respond(["Token"=> $this->generateJWT($model->entitieWithRole($validate['IdEntitie'])[0])]);
 
         } catch (\Exception $e) {
             return $this->failServerError('Error de servidor' . $e);
@@ -38,7 +38,6 @@ class Auth extends BaseController
         $payload = 
         [
             'data' => $data,
-            'aud' => base_url(),
             'iat' => $time,
             'exp' => $time + 500
         ];

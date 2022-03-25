@@ -37,6 +37,9 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->post('/auth/login', 'Auth::login');
 
+$arr = [];
+//$arr = ['filter' => 'auth'];
+
 // Entities routes http://localhost:8080/api/entities
 $routes->get('api/entities','API\Entities::index');
 $routes->post('api/entities/create','API\Entities::create');
