@@ -3,6 +3,7 @@
 namespace App\Controllers\API;
 
 use App\Models\BussinessModel;
+
 use CodeIgniter\RESTful\ResourceController;
 
 class Bussiness extends ResourceController

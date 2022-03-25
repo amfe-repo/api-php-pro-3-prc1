@@ -39,7 +39,8 @@ class Entities extends ResourceController
 
     public function search($id = null)
     {
-        try {
+        try 
+        {
             if ($id == null)
                 return $this->failValidationError('ID not valid.');
 
@@ -56,7 +57,8 @@ class Entities extends ResourceController
 
     public function update($id = null)
     {
-        try {
+        try 
+        {
             if ($id == null)
                 return $this->failValidationError('ID not valid.');
 
@@ -79,7 +81,8 @@ class Entities extends ResourceController
 
     public function delete($id = null)
     {
-        try {
+        try 
+        {
             if ($id == null)
                 return $this->failValidationError('ID not valid.');
 
@@ -95,6 +98,26 @@ class Entities extends ResourceController
             } else {
                 return $this->failValidationError($this->model->validation->listErrors());
             }
+        } catch (\Throwable $th) {
+            return $this->failServerError('An error ocurried' . $th);
+        }
+    }
+
+    public function searchRole($id = null)
+    {
+        try 
+        {
+            if ($id == null)
+                return $this->failValidationError('ID not valid.');
+
+            $entitie = $this->model->find($id);
+
+            if ($entitie == null)
+                return $this->failNotFound('Id not found. ' . $id);
+
+            $entitie = $this->model->entitieWithRole($id);
+            
+            return $this->respond($entitie);
         } catch (\Throwable $th) {
             return $this->failServerError('An error ocurried' . $th);
         }
