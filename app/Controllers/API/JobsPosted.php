@@ -103,4 +103,27 @@ class JobsPosted extends ResourceController
             return $this->failServerError('An error ocurried' . $th);
         }
     }
+
+    public function searchJobs($id = null)
+    {
+        try 
+        {
+
+            if ($id != null)
+            {
+                $jobsposted = $this->model->find($id);
+
+                if ($jobsposted == null)
+                    return $this->failNotFound('Id no encontrado' . $id);
+            }
+          
+            $jobsposted = $this->model->jobsWithInfo($id);
+            
+            return $this->respond($jobsposted);
+            
+        } catch (\Exception $e) {
+
+            return $this->failServerError('An error ocurried. ' . $e);
+        }
+    }
 }
