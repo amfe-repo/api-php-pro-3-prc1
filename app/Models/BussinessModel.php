@@ -14,9 +14,9 @@ protected $allowedFields = ['Name','Description','EmailToReply'];
 
 protected $validationRules = [
 
-    'Name' => 'required|alpha_space|min_lenght[3]|max_lenght[40]',
-    'Description' => 'required|alpha_space|min_lenght[3]|max_lenght[120]',
-    'EmailToReply' => 'required|alpha_space|min_lenght[3]|max_lenght[40]'
+    'Name' => 'required|alpha_space|min_length[3]|max_length[40]',
+    'Description' => 'required|min_length[3]|max_length[120]',
+    'EmailToReply' => 'required|valid_email|min_length[3]|max_length[40]'
  
 ];
 

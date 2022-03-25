@@ -14,7 +14,7 @@ class ScheduleJobModel extends Model
     protected $allowedFields = ['Schedule'];
 
     protected $validationRules = [
-        'Schedule' => 'required|alpha_space|min_lenght[3]|max_lenght[25]'
+        'Schedule' => 'required|alpha_space|min_length[3]|max_length[25]'
     ];
 
     protected $validationMessage = [

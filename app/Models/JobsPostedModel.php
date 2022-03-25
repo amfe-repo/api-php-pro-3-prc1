@@ -14,10 +14,10 @@ class JobsPostedModel extends Model
     protected $allowedFields = ['Description', 'IdSchedule', 'Position', 'UrlWebSite', 'Ubication', 'IdBussiness'];
 
     protected $validationRules = [
-        'Description' => 'required|alpha_space|min_lenght[3]|max_lenght[120]',
-        'Position' => 'required|alpha_space|min_lenght[3]|max_lenght[40]',
-        'UrlWebSite' => 'required|alpha_space|min_lenght[3]|max_lenght[80]',
-        'Ubication' => 'required|alpha_space|min_lenght[3]|max_lenght[40]'
+        'Description' => 'required|min_length[3]|max_length[120]',
+        'Position' => 'required|min_length[3]|max_length[40]',
+        'UrlWebSite' => 'required|valid_email|min_length[3]|max_length[80]',
+        'Ubication' => 'required|min_length[3]|max_length[40]'
     ];
 
     protected $validationMessage = [
