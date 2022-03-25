@@ -93,6 +93,7 @@ class Bussiness extends ResourceController
             } else {
                 return $this->failValidationError($this->model->validation->listErrors());
             }
+            
         } catch (\Throwable $th) {
             return $this->failServerError('An error ocurried' . $th);
         }
