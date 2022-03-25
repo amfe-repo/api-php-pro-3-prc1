@@ -35,6 +35,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->post('/auth/login', 'Auth::login');
 
 // Entities routes http://localhost:8080/api/entities
 $routes->get('api/entities','API\Entities::index');
